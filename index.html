@@ -269,6 +269,59 @@
             background-color: #FFF8DC;
         }
 
+
+        .announcement-strip {
+            background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+            padding: 12px 0;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
+            border: 2px solid #DAA520;
+            position: relative;
+            text-align: center;
+        }
+
+        .announcement-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: #8B0000;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes scrollText {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .announcement-strip {
+                padding: 10px 0;
+                margin-bottom: 20px;
+            }
+
+            .announcement-text {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .announcement-strip {
+                padding: 8px 0;
+                margin-bottom: 15px;
+            }
+
+            .announcement-text {
+                font-size: 14px;
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-images {
@@ -402,6 +455,11 @@
                     <img src="yugal muni photo.png" alt="Right Image" class="header-img-right">
                     <div class="img-caption">युगल मुनि श्री शिवानंद जी प्रश्मानन्द जी मुनिराज</div>
                 </div>
+            </div>
+        </div>
+        <div class="announcement-strip">
+            <div class="announcement-text">
+                🎉 खुशियों के रंग प्रतियोगिता का रिजल्ट Comming Soon ....
             </div>
         </div>
 
@@ -691,7 +749,7 @@
             { sno: 189, name: "माया शाह", father: "सुरेशचंद शाह", address: "गुजरात", receipt: "155" },
             { sno: 190, name: "शोभा जैन", father: "प्रवीण कुमार जैन", address: "बेंगलुरु कर्नाटक", receipt: "199" },
             { sno: 191, name: "श्रीमती निष्ठा जैन", father: "चिराग जैन", address: "टीकमगढ़ मध्य प्रदेश", receipt: "73" },
-            { sno: 192, name: "डेज़ी जैन", father: "दीपक जैन", address: "फ़िरोज़ाबाद उत्तर प्रदेश", receipt: "" },
+            { sno: 192, name: "डेजी जैन", father: "दीपक जैन", address: "फ़िरोज़ाबाद उत्तर प्रदेश", receipt: "174" },
             { sno: 193, name: "कुमार पलक जैन", father: "धरेंद्र जैन", address: "चित्तौड़गढ़ राजस्थान", receipt: "139" },
             { sno: 194, name: "पंकज जैन", father: "नरेश जैन", address: "फ़िरोज़ाबाद उत्तर प्रदेश", receipt: "159" },
             { sno: 195, name: "अनुपमा जैन", father: "नीरज जैन", address: "पश्चिम बंगाल", receipt: "189" },
