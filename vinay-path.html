@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>विनय पाठ प्रतियोगिता 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #FF6347 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: linear-gradient(to bottom, #FFF8DC 0%, #FFFAF0 100%);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 15px 50px rgba(139, 0, 0, 0.5);
+            border: 3px solid #DAA520;
+        }
+
+        .back-button {
+            background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+            color: white;
+            border: 2px solid #DAA520;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.6);
+            background: linear-gradient(135deg, #FF0000 0%, #B22222 100%);
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+            border-radius: 12px;
+            padding: 25px 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.4);
+            border: 2px solid #DAA520;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .header-images {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .left-section,
+        .right-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .header-center {
+            text-align: center;
+            flex: 1;
+            padding: 0 15px;
+        }
+
+        .header-img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            border: 3px solid #DAA520;
+        }
+
+        .header-img-right {
+            width: 190px;
+            height: 160px;
+            object-fit: fill;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            border: 3px solid #DAA520;
+        }
+
+        .img-caption {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #8B0000;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border: 2px solid #DAA520;
+            max-width: 200px;
+        }
+
+        .main-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #FFD700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            margin-bottom: 8px;
+            line-height: 1.3;
+            letter-spacing: 1px;
+        }
+
+        .sub-title {
+            font-size: 38px;
+            font-weight: 800;
+            color: #FFA500;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .year-title {
+            font-size: 56px;
+            font-weight: 900;
+            color: #FFFFFF;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .organizer-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #FFFACD;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: rgba(139, 0, 0, 0.3);
+            border-radius: 8px;
+            display: inline-block;
+            border: 2px solid rgba(218, 165, 32, 0.5);
+        }
+
+        .poster-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 30px auto;
+            display: block;
+            border-radius: 12px;
+            border: 3px solid #DAA520;
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
+        }
+
+        .instructions-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid #DC143C;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.2);
+            margin-top: 25px;
+        }
+
+        .instructions-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #8B0000;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .instruction-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #FFE4E1;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .instruction-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-images {
+                gap: 10px;
+            }
+
+            .header-center {
+                padding: 0 5px;
+            }
+
+            .header-img {
+                width: 80px;
+                height: 100px;
+            }
+
+            .header-img-right {
+                width: 100px;
+                height: 85px;
+            }
+
+            .img-caption {
+                font-size: 9px;
+                padding: 4px 6px;
+                max-width: 100px;
+            }
+
+            .main-title {
+                font-size: 24px;
+            }
+
+            .sub-title {
+                font-size: 18px;
+            }
+
+            .year-title {
+                font-size: 28px;
+            }
+
+            .organizer-text {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            .instructions-title {
+                font-size: 22px;
+            }
+
+            .instruction-item {
+                font-size: 14px;
+                padding: 12px 0;
+            }
+
+            .back-button {
+                font-size: 14px;
+                padding: 10px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header-section {
+                padding: 15px 8px;
+            }
+
+            .header-images {
+                gap: 5px;
+            }
+
+            .header-img {
+                width: 60px;
+                height: 75px;
+            }
+
+            .header-img-right {
+                width: 75px;
+                height: 65px;
+            }
+
+            .img-caption {
+                font-size: 7px;
+                padding: 3px 5px;
+                max-width: 75px;
+            }
+
+            .main-title {
+                font-size: 18px;
+            }
+
+            .sub-title {
+                font-size: 14px;
+            }
+
+            .year-title {
+                font-size: 22px;
+            }
+
+            .organizer-text {
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+
+            .instructions-section {
+                padding: 20px;
+            }
+
+            .instructions-title {
+                font-size: 18px;
+            }
+
+            .instruction-item {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="back-button" onclick="window.history.back()">
+            ← वापस जाएं
+        </button>
+
+        <div class="header-section">
+            <div class="header-images">
+                <div class="left-section">
+                    <img src="Vasunandi Ji muniraj.png" alt="Left Image" class="header-img">
+                    <div class="img-caption">प्राकृत भाषा चक्रवर्ती आचार्य श्री १०८ वसुनंदी जी महाराज</div>
+                </div>
+
+                <div class="header-center">
+                    <div class="main-title">जय जिनदेव</div>
+                    <div class="sub-title">विनय पाठ प्रतियोगिता</div>
+                    <div class="year-title">2025</div>
+                    <div class="organizer-text">आयोजक : सकल दिगंबर जैन समाज, भजनपुरा</div>
+                </div>
+
+                <div class="right-section">
+                    <img src="yugal muni photo.png" alt="Right Image" class="header-img-right">
+                    <div class="img-caption">युगल मुनि श्री शिवानंद जी प्रश्मानन्द जी मुनिराज</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add your poster image here -->
+        <img src="Vinay_path.jpg" alt="विनय पाठ प्रतियोगिता पोस्टर" class="poster-image">
+
+        <div class="instructions-section">
+            <h2 class="instructions-title">प्रतियोगिता के नियम एवं शर्तें</h2>
+
+            <div class="instruction-item">
+                <strong>1.</strong> प्रतियोगिता का आयोजन 09 नवम्बर से 05 दिसम्बर 25 के मध्य किया जायेगा।
+            </div>
+
+            <div class="instruction-item">
+                <strong>2.</strong> सभी प्रश्न 'श्रीवाणी स्वाध्याय' चैनल की Playlist में विनय पाठ अर्थ के आधार से पूछे जायेंगे जिनके उत्तर उसी अनुसार मान्य होंगे।
+            </div>
+
+            <div class="instruction-item">
+                <strong>3.</strong> कुल 22 Episodes हैं। प्रत्येक से 5-5 प्रश्न होंगे, कुल 110 प्रश्न और 110 अंक निर्धारित हैं।
+            </div>
+
+            <div class="instruction-item">
+                <strong>4. BONUS POINTS:-</strong> यदि आपकी उत्तर पुस्तिका 09 से 13 नवम्बर के मध्य प्राप्त होती है तो 10 Points प्राप्त होगे, यदि 14 से 19 नवम्बर के मध्य प्राप्त होती है तो 7 Points प्राप्त होगे, यदि 20 से 24 नवम्बर के मध्य प्राप्त होती है तो 5 Points मिलेंगे, इसके पश्चात् बोनस अंक प्राप्त नहीं हो सकेंगे।
+            </div>
+
+            <div class="instruction-item">
+                <strong>5.</strong> प्रत्येक राज्य से सर्वप्रथम प्रतियोगिता प्राप्त होने पर 3 Points Bonus दिये जायेंगे।
+            </div>
+
+            <div class="instruction-item">
+                <strong>6.</strong> सभी प्राप्त उत्तर पुस्तिकाओं में से प्रथम पुरस्कार ₹1100/-, द्वितीय पुरस्कार ₹750/-, तृतीय पुरस्कार ₹500/-, 7 सांत्वना पुरस्कार ₹200/- प्रत्येक नगद प्रदान किये जायेंगे।
+            </div>
+
+            <div class="instruction-item">
+                <strong>7.</strong> यदि एक राज्य से 10 से अधिक पुस्तिकाएं जमा होती है तो उस राज्य में से 2 पुरस्कार ₹100/- प्रत्येक को प्रदान किये जायेंगे।
+            </div>
+
+            <div class="instruction-item">
+                <strong>8.</strong> समान अंक आने पर विजेताओं का चयन ड्रॉ द्वारा किया जायेगा।
+            </div>
+
+            <div class="instruction-item">
+                <strong>9.</strong> एक व्यक्ति अपने नाम से एक ही प्रति जमा कर सकता है, एक से अधिक प्रति मान्य नहीं होंगी।
+            </div>
+
+            <div class="instruction-item">
+                <strong>10.</strong> यह प्रतियोगिता मात्र Online Google Form के माध्यम से ही भरी जायेगी। Screenshot आदि मान्य नहीं होंगे।
+            </div>
+
+            <div class="instruction-item">
+                <strong>11.</strong> Google form का link whatsapp ग्रुप पर share किया जायेगा।
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
