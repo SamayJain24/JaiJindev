@@ -470,6 +470,172 @@
                 font-size: 14px;
             }
         }
+
+        /* Narrow winners banner (new) */
+        .winners-banner {
+            background: linear-gradient(90deg, #fff 0%, #fff0 100%);
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 2px solid #DAA520;
+            display: inline-block;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 12px;
+            font-weight: 800;
+            color: #8B0000;
+        }
+
+        .winners-banner:hover {
+            transform: translateY(-2px);
+        }
+
+        .winners-container {
+            margin: 12px 0 20px 0;
+            display: none;
+            border: 2px solid #FFE4B5;
+            background: #FFFDF5;
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .winners-group {
+            margin-bottom: 12px;
+        }
+
+        .winners-group h4 {
+            margin: 6px 0;
+            font-size: 18px;
+            color: #8B0000;
+            border-left: 6px solid #DAA520;
+            padding-left: 10px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.3);
+            border: 2px solid #DAA520;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+            color: #FFD700;
+            padding: 16px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 3px solid #DAA520;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #FFE4E1;
+            font-size: 15px;
+        }
+
+        tr:hover {
+            background-color: #FFF0F5;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FFF8DC;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+            color: white;
+            border: 2px solid #DAA520;
+            padding: 14px 28px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all .3s ease;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.6);
+            background: linear-gradient(135deg, #FF0000 0%, #B22222 100%);
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #searchInput {
+            padding: 14px 20px;
+            width: 70%;
+            max-width: 600px;
+            font-size: 17px;
+            border-radius: 10px;
+            border: 3px solid #DC143C;
+            background: white;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.2);
+            transition: all .3s ease;
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: #8B0000;
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
+        }
+
+        @media (max-width:768px) {
+            .winners-banner {
+                font-size: 14px;
+                padding: 6px 10px;
+            }
+
+            .stat-card {
+                min-width: 160px;
+            }
+
+            #searchInput {
+                width: 90%;
+                font-size: 15px;
+            }
+
+            th,
+            td {
+                font-size: 13px;
+                padding: 10px 8px;
+            }
+
+            .main-title {
+                font-size: 24px;
+            }
+
+            .sub-title {
+                font-size: 18px;
+            }
+
+            .year-title {
+                font-size: 28px;
+            }
+        }
     </style>
 </head>
 
@@ -509,6 +675,15 @@
             </div>
         </div>
 
+        <div>
+            <div class="winners-banner" id="winnersBanner" onclick="toggleWinners()">
+                ज्ञानवर्द्धन प्रतियोगिता के 51 विजेता की सूची ▼
+            </div>
+        </div>
+
+        <div class="winners-container" id="winnersContainer" aria-hidden="true"></div>
+
+
         <div class="stats">
             <div class="stat-card">
                 <h3>कुल रिकॉर्ड</h3>
@@ -516,9 +691,9 @@
             </div>
         </div>
 
-        <div class="controls">
+        <!-- <div class="controls">
             <button onclick="exportToExcel()">📥 Download Excel File</button>
-        </div>
+        </div> -->
 
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="🔍 नाम, पिता का नाम या स्थान से खोजें..."
@@ -2050,15 +2225,188 @@
             { sno: 1405, name: "नमन जैन", father: "नीरज जैन", address: "बुढ़ाना उत्तर प्रदेश", receipt: "217" }
 
 
-
-
-
-
-
         ];
+
+        const winnersRaw = {
+            "1": [
+                "1207 – बबीता जैन, राकेश जैन, छपरौली बागपत"
+            ],
+            "2": [
+                "476 – रोशनी जैन सरैया, संजय कुमार सरैया, हरसोलीवाद, दाहोद, गुजरात",
+                "478 – शिखा जैन सराफ, अमित जैन शराफ, अरिहंत स्टूडियो दाहोद, गुजरात",
+                "454 – विमल जैन, फूलचंद जैन, अग्रवाल फार्म, जयपुर"
+            ],
+            "3": [
+                "448 – अरुण जैन, किस्तुरचंद जैन, अग्रवाल फार्म, थड़ी मार्केट, जयपुर",
+                "721 – साधना जैन, विपुल जैन, भजनपुरा, दिल्ली",
+                "1343 – प्रियंका जी, अमित जैन, ऋषभ विहार, दिल्ली",
+                "1282 – मिमीषा मुकेश जैन, अजमेर",
+                "635 – पूजा जैन, शुभम जैन, सोनागिरि"
+            ],
+            "4": [
+                "1371 – पूनम जैन, मुकेश जैन, द्वारका, दिल्ली",
+                "1336 – आर्यन जी, नितेश जैन, राणा प्रताप बाग, दिल्ली",
+                "1374 – रक्षा जी, गौरव जैन, रघवपुरा, दिल्ली",
+                "1309 – अच्यम जी, संचित जैन, नोएडा, यूपी",
+                "517 – अंशु जैन, सुभाष चंद जैन, हरियाणा",
+                "494 – प्राची सरावगी, शुभम जैन, दिल्ली",
+                "807 – मनन जैन, विकास जैन, होडल",
+                "1158 – उन्नति जैन, मुकेश जैन, विजय पार्क, दिल्ली",
+                "1310 – सरोज जैन, विमल जैन, हौज खास, दिल्ली",
+                "435 – दीक्षा जैन, अंकित जैन, डुंडला, फिरोजाबाद",
+                "1283 – शारदा धरेंद्र जैन, लोहिया बाजार, गाजियाबाद"
+            ],
+            "5": [
+                "1370 – स्वाति जैन, हिमांशु जैन, गाजियाबाद",
+                "1131 – संजय कुमार जी.के. जैन, यमुना विहार, दिल्ली",
+                "636 – सुषमा जैन, विजय पाथक, धूलिया",
+                "115 – साक्षी जैन, मोहित जैन, नवीन शाहदरा, दिल्ली",
+                "453 – मंजू जैन, पंकज ज Jain, थड़ी मार्केट, जयपुर",
+                "1138 – शशि जैन, तरश चंद जैन, जागृति एन्क्लेव, दिल्ली",
+                "442 – अनिता सरावगी, राजकमल सरावगी, ग्रीन पार्क, दिल्ली",
+                "1040 – पलल्वी सम्यक जैन, बाहुबली एन्क्लेव, दिल्ली",
+                "63 – मनीष जैन, सहारनपुर, यू.पी.",
+                "1315 – कंचन मुकेश जैन, व्यावर, राजस्थान",
+                "64 – अंजू जैन, मुकेश ज Jain, दिल्ली",
+                "440 – आकांक्षा जैन, आदित्यराज जैन, ग्रीन पार्क, दिल्ली",
+                "1405 – नमन जैन, नीरज जैन, बुढ़ाना यू.पी.",
+                "1136 – समकित जैन, संजय ज Jain, यमुना विहार, दिल्ली",
+                "221 – कीर्ति जैन, संजीव ज Jain, खरगोन",
+                "1314 – हर्षिता जैन, दीपक जैन, पांडुचेरी",
+                "1137 – निशा जैन, अरविंद जैन, कृष्णा नगर, दिल्ली",
+                "1272 – शशि जैन, महेंद्र कुमार जैन, पांडुचेरी",
+                "1344 – अर्थव जैन, निलेश ज Jain, राणा प्रताप बाग, दिल्ली",
+                "1135 – अर्पित जैन, संजय ज Jain, यमुना विहार, दिल्ली",
+                "1383 – सुधीर जैन, एल.आर. जैन, आजाद नगर, दिल्ली",
+                "62 – छाया जैन, गौरव जैन, दिल्ली",
+                "1132 – तनु जैन, अम्बुज जैन, सूर्या नगर, गाजियाबाद",
+                "455 – मीना जैन, श्रेयांश जैन, थड़ी मार्केट, जयपुर",
+                "1308 – मेधा जैन, राकेश जैन, मेरठ, यू.पी.",
+                "1342 – विमल जैन, जगदीश प्रसाद जैन, दिल्ली",
+                "1159 – पारल जैन, मुकेश जैन, विजय पार्क, दिल्ली",
+                "1369 – आर्यव जैन, गौरव जैन, कृष्णानगर, दिल्ली",
+                "1285 – रीना जैन, पी.सी. जैन, कविनगर, गाजियाबाद",
+                "727 – समय जैन, विपुल जैन, भजनपुरा, दिल्ली",
+                "1348 – शौर्य जैन, नितेश ज Jain, राणा प्रताप बाग, दिल्ली"
+            ]
+        };
+
+        function parseWinnerLine(line) {
+
+            const parts = line.split('–');
+            if (parts.length < 2) {
+                const parts2 = line.split('-');
+                if (parts2.length < 2) return null;
+                parts[0] = parts2[0];
+                parts[1] = parts2.slice(1).join('-');
+            }
+            const snoStr = parts[0].trim();
+            const sno = parseInt(snoStr, 10) || null;
+            const rest = parts[1].trim();
+            const commaParts = rest.split(',');
+            const name = (commaParts[0] || '').trim();
+            const father = (commaParts[1] || '').trim();
+            const address = (commaParts.length > 2) ? commaParts.slice(2).map(s => s.trim()).filter(Boolean).join(', ') : '';
+            return { sno, name, father, address };
+        }
+
+
+        function buildWinnersList() {
+            const groups = []; // [{position:1, items:[{sno,name,father,address}]}]
+            for (const pos of ["1", "2", "3", "4", "5"]) {
+                const rawArr = winnersRaw[pos] || [];
+                const items = rawArr.map(line => {
+                    const parsed = parseWinnerLine(line) || {};
+                    // Try to find record in data by sno
+                    if (parsed.sno) {
+                        const found = data.find(d => Number(d.sno) === Number(parsed.sno));
+                        if (found) {
+                            // Use the full record from `data` (keeps receipt if any)
+                            return { sno: found.sno, name: found.name, father: found.father || parsed.father || '', address: found.address || parsed.address || '' };
+                        } else {
+                            // fallback to parsed fields
+                            return { sno: parsed.sno, name: parsed.name || '', father: parsed.father || '', address: parsed.address || '' };
+                        }
+                    } else {
+                        // no sno, just text - put as name
+                        return { sno: '', name: line, father: '', address: '' };
+                    }
+                });
+                groups.push({ position: Number(pos), items });
+            }
+            return groups;
+        }
+
+        /* Toggle show/hide winners */
+        function toggleWinners() {
+            const container = document.getElementById('winnersContainer');
+            const banner = document.getElementById('winnersBanner');
+            if (container.style.display === 'none' || container.style.display === '') {
+                renderWinners();
+                container.style.display = 'block';
+                container.setAttribute('aria-hidden', 'false');
+                banner.textContent = 'ज्ञानवर्द्धन प्रतियोगिता के 51 विजेता की सूची ▲';
+            } else {
+                container.style.display = 'none';
+                container.setAttribute('aria-hidden', 'true');
+                banner.textContent = 'ज्ञानवर्द्धन प्रतियोगिता के 51 विजेता की सूची ▼';
+            }
+        }
+
+        /* Render grouped winners table into winnersContainer */
+        function renderWinners() {
+            const container = document.getElementById('winnersContainer');
+            container.innerHTML = ''; // clear
+            const groups = buildWinnersList();
+
+            groups.forEach(group => {
+                const groupWrap = document.createElement('div');
+                groupWrap.className = 'winners-group';
+                const heading = document.createElement('h4');
+                const count = group.items.length;
+                heading.textContent = `${group.position}वीं पुरस्कार श्रेणी — (${count})`;
+                groupWrap.appendChild(heading);
+
+                // Create small table per group
+                const tbl = document.createElement('table');
+                tbl.style.marginBottom = '8px';
+                const thead = document.createElement('thead');
+                thead.innerHTML = `<tr>
+                    <th style="background:#DAA520; color:#fff; border-bottom:1px solid #e8c27a; padding:8px;">S.No.</th>
+                    <th style="background:#DAA520; color:#fff; border-bottom:1px solid #e8c27a; padding:8px;">नाम</th>
+                    <th style="background:#DAA520; color:#fff; border-bottom:1px solid #e8c27a; padding:8px;">पिता/पति</th>
+                    <th style="background:#DAA520; color:#fff; border-bottom:1px solid #e8c27a; padding:8px;">पता</th>
+                </tr>`;
+                tbl.appendChild(thead);
+                const tbody = document.createElement('tbody');
+
+                group.items.forEach(item => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${item.sno || ''}</td>
+                                    <td>${escapeHtml(item.name || '')}</td>
+                                    <td>${escapeHtml(item.father || '')}</td>
+                                    <td>${escapeHtml(item.address || '')}</td>`;
+                    tbody.appendChild(tr);
+                });
+
+                tbl.appendChild(tbody);
+                groupWrap.appendChild(tbl);
+                container.appendChild(groupWrap);
+            });
+
+            const note = document.createElement('div');
+            note.style.fontSize = '13px';
+            note.style.marginTop = '6px';
+            note.style.color = '#6b3a3a';
+            container.appendChild(note);
+        }
+
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, function (m) {
+                return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m];
+            });
+        }
     </script>
 </body>
 
 </html>
-
-
